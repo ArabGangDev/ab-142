@@ -41,7 +41,6 @@
     "npm": "^7.5.4",
     "opusscript": "0.0.6",
     "parse-ms": "^2.1.0",
-    "quick.db": "^6.2.0",
     "rebuild": "^0.1.2",
     "reddit": "^1.2.1",
     "request": "^2.88.2",
