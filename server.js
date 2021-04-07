@@ -502,8 +502,8 @@ client.on("message", async message => {//$delete | Fun
     if (message.content.toLowerCase().startsWith(prefix + "delete")) {
               let user = message.mentions.users.first();
               if(!user) return message.channel.send(":no_entry: **You need to mention someone.** :no_entry:")
-        let avatar = message.author.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
-        const avatar2 = user.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+        let avatar = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
+        const avatar2 = user.displayAvatarURL({ dynamic: false, format: 'png' });
         let img = await new DIG.Delete().getImage(`${avatar2}`);
         let attach = new Discord.MessageAttachment(img, "Delete.png");;
         message.channel.send(attach)
@@ -514,8 +514,8 @@ client.on("message", async message => {//$trash | Fun
   if (message.content.toLowerCase().startsWith(prefix + "trash")) {
             let user = message.mentions.users.first();
             if(!user) return message.channel.send(":no_entry: **You need to mention someone.** :no_entry:")
-      let avatar = message.author.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
-      const avatar2 = user.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+      let avatar = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
+      const avatar2 = user.displayAvatarURL({ dynamic: false, format: 'png' });
       let img = await new DIG.Trash().getImage(`${avatar2}`);
       let attach = new Discord.MessageAttachment(img, "Delete.png");;
       message.channel.send(attach)
