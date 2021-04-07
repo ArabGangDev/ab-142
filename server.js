@@ -1331,7 +1331,7 @@ client.on("message", message => {
 });
 
 client.on('message', message =>{//suggestions | Other
-  var channel =  message.channel.id === "813773963104223262"
+  var channel =  message.channel.id === "785225123799760917"
   if (message.author.id == "361855205664489475") return;
  if (!channel) return false;
   let suggestion = message.content.split(" ").slice('').join(" ")
