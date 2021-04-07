@@ -1,53 +1,57 @@
-const Discord = require('discord.js');//npm i discord.js
+const Discord = require("discord.js");//npm i discord.js
 const client = new Discord.Client();//client
 const moment = require("moment");//npm i moment
 const ms = require("ms");//npm i ms
 const fs = require("fs");//npm i fs
-const dateFormat = require('dateformat');//npm i dateformat
+const dateFormat = require("dateformat");//npm i dateformat
 const Canvas = require("canvas");//npm i canvas
+const DIG = require("discord-image-generation");//npm i discord-image-generation
+const shorten = require("isgd");//npm i isgd
+const DisTube = require("distube");//npm i distube
+const { replace } = require("ffmpeg-static");//npm i ffmpeg-static
 const prefix = ("$");//prefix
 client.on("ready", () =>{//Ready
-console.log('Online v0.9.5 v12');
+console.log('Online v1.0!');
         client.user.setActivity('$help | androbot.xyz')
 });
 
 ////////////////Help
 
-client.on('message', message => {//$help | Help
+client.on('message', message => {
 
-  if (message.content === prefix + "help") {
+  if (message.content.toLowerCase() === prefix + "help") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-	.setAuthor(message.author.tag, message.author.avatarURL())
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
+	.setAuthor(message.guild.name, message.guild.iconURL())
+  .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
     .setColor("#d1afd2")
     .setDescription(`
-<:general:801172797760995358> **| General Commands**
-**\`-\` ${prefix}help general**
+> <:general:801172797760995358> **| General Commands**
+> **\`-\` ${prefix}help general**
 
-<:sparklesandro:795426662757695528> **| Admin Commands**
-**\`-\` ${prefix}help admin**
+> <:sparklesandro:795426662757695528> **| Admin Commands**
+> **\`-\` ${prefix}help admin**
 
-<:music:806928505236750426> **| Music Commands**
-**\`-\` ${prefix}help music**
+> <:music:806928505236750426> **| Music Commands**
+> **\`-\` ${prefix}help music**
 
-<:rocket:795426662408912947> **| Fun Commands**
-**\`-\` ${prefix}help fun**
+> <:rocket:795426662408912947> **| Fun Commands**
+> **\`-\` ${prefix}help fun**
 
-<:maintenance:795426662350192643> **| Ticket Commands**
-**\`-\` ${prefix}help ticket**
+> <:maintenance:795426662350192643> **| Ticket Commands**
+> **\`-\` ${prefix}help ticket**
 
-<:Partypopperandro:795426662590185492> **| Giveaway Commands**
-**\`-\` ${prefix}help giveaway**
+> <:Partypopperandro:795426662590185492> **| Giveaway Commands**
+> **\`-\` ${prefix}help giveaway**
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
+<:boost:801332804524179457> **Bot version: **\`v1.0\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
 `)
 .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -55,57 +59,55 @@ client.on('message', message => {//$help | Help
 
 client.on('message', message => {//$help general | Help
 
-  if (message.content === prefix + "help general") {
+  if (message.content.toLowerCase() === prefix + "help general") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
+    .setAuthor(message.guild.name, message.guild.iconURL())
 	.setTitle('<:general:801172797760995358>** | General Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
+  .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
     .setColor("#d1afd2")
     .setDescription(`
-<:hashtagandro:795426662216892436> **\`${prefix}short\`**
-<:question:795426662363430953> Description: Shortens a link.
+> <:hashtagandro:795426662216892436> **\`${prefix}short\`**
+> <:question:795426662363430953> Description: Shortens a link.
 
-<:hashtagandro:795426662216892436> **\`${prefix}roles\`**
-<:question:795426662363430953> Description: Get a list of all server roles.
+> <:hashtagandro:795426662216892436> **\`${prefix}roles\`**
+> <:question:795426662363430953> Description: Get a list of all server roles.
 
-<:hashtagandro:795426662216892436> **\`${prefix}emojis\`**
-<:question:795426662363430953> Description: Get a list of all server emojis.
+> <:hashtagandro:795426662216892436> **\`${prefix}emojis\`**
+> <:question:795426662363430953> Description: Get a list of all server emojis.
 
-<:hashtagandro:795426662216892436> **\`${prefix}avatar / ${prefix}avatar server\`**
-<:question:795426662363430953> Description: Get a user's/server avatar.
+> <:hashtagandro:795426662216892436> **\`${prefix}avatar / avatar server\`**
+> <:question:795426662363430953> Description: Get a user's/server's avatar.
 
-<:hashtagandro:795426662216892436> **\`${prefix}invites\`**
-<:question:795426662363430953> Description: Get a user's invites.
+> <:hashtagandro:795426662216892436> **\`${prefix}invites\`**
+> <:question:795426662363430953> Description: Get a user's invites.
 
-<:hashtagandro:795426662216892436> **\`${prefix}user\`**
-<:question:795426662363430953> Description: Get a user's information.
+> <:hashtagandro:795426662216892436> **\`${prefix}user\`**
+> <:question:795426662363430953> Description: Get a user's information.
 
-<:hashtagandro:795426662216892436> **\`${prefix}bot\`**
-<:question:795426662363430953> Description: Get the bot information.
+> <:hashtagandro:795426662216892436> **\`${prefix}bot\`**
+> <:question:795426662363430953> Description: Get the bot information.
 
-<:hashtagandro:795426662216892436> **\`${prefix}server\`**
-<:question:795426662363430953> Description: Get a server information.
+> <:hashtagandro:795426662216892436> **\`${prefix}server\`**
+> <:question:795426662363430953> Description: Get a server information.
 
-<:hashtagandro:795426662216892436> **\`${prefix}dev\`**
-<:question:795426662363430953>Description: Get the developer information.
+> <:hashtagandro:795426662216892436> **\`${prefix}dev\`**
+> <:question:795426662363430953>Description: Get the developer information.
 
-<:hashtagandro:795426662216892436> **\`${prefix}inv\`**
-<:question:795426662363430953> Description: Get the bot invite link.
+> <:hashtagandro:795426662216892436> **\`${prefix}inv\`**
+> <:question:795426662363430953> Description: Get the bot links.
 
-<:hashtagandro:795426662216892436> **\`${prefix}vote\`**
-<:question:795426662363430953> Description: Get the bot vote link.
-
-<:hashtagandro:795426662216892436> **\`${prefix}donate\`**
-<:question:795426662363430953> Description: Get the bot donate link.
+> <:hashtagandro:795426662216892436> **\`${prefix}vote\`**
+> <:question:795426662363430953> Description: Get the bot vote link.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
+<:boost:801332804524179457> **Bot version: **\`v1.0\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
 `)
 .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -113,60 +115,58 @@ client.on('message', message => {//$help general | Help
 
 client.on('message', message => {//$help admin | Help
 
-  if (message.content === prefix + "help admin") {
+  if (message.content.toLowerCase() === prefix + "help admin") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-	.setTitle('<:sparklesandro:795426662757695528>** | Admin Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
-    .setColor("#d1afd2")
-    .setDescription(`
-<:hashtagandro:795426662216892436> **\`${prefix}say\`**
-<:question:795426662363430953> Description: Send a message as a bot.
+    .setAuthor(message.guild.name, message.guild.iconURL())
+    .setTitle('<:sparklesandro:795426662757695528>** | Admin Commands**')
+    .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+      .setColor("#d1afd2")
+      .setDescription(`
+> <:hashtagandro:795426662216892436> **\`${prefix}setnick\`**
+> <:question:795426662363430953> Description: Changes nickname for a member.
 
-<:hashtagandro:795426662216892436> **\`${prefix}embed\`**
-<:question:795426662363430953> Description: Send a message as a bot with embed.
+> <:hashtagandro:795426662216892436> **\`${prefix}vkick\`**
+> <:question:795426662363430953> Description: kick a member from a voice channel.
 
-<:hashtagandro:795426662216892436> **\`${prefix}clear\`**
-<:question:795426662363430953> Description: Cleans messages from a channel.
+> <:hashtagandro:795426662216892436> **\`${prefix}say\`**
+> <:question:795426662363430953> Description: Send a message as a bot.
 
-<:hashtagandro:795426662216892436> **\`${prefix}mute\`**
-<:question:795426662363430953> Description: Mutes a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}embed\`**
+> <:question:795426662363430953> Description: Send a message as a bot with embed.
 
-<:hashtagandro:795426662216892436> **\`${prefix}unmute\`**
-<:question:795426662363430953> Description: Unmutes a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}clear\`**
+> <:question:795426662363430953> Description: Cleans messages from a channel.
 
-<:hashtagandro:795426662216892436> **\`${prefix}ban\`**
-<:question:795426662363430953> Description: Bans a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}mute / unmute\`**
+> <:question:795426662363430953> Description: Mutes / umutes a member.
 
-<:hashtagandro:795426662216892436> **\`${prefix}kick\`**
-<:question:795426662363430953> Description: kicks a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}ban\`**
+> <:question:795426662363430953> Description: Bans a member.
 
-<:hashtagandro:795426662216892436> **\`${prefix}unban\`**
-<:question:795426662363430953> Description: UnBans a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}kick\`**
+> <:question:795426662363430953> Description: kicks a member.
 
-<:hashtagandro:795426662216892436> **\`${prefix}bans\`**
-<:question:795426662363430953> Description: List you all the banned members.
+> <:hashtagandro:795426662216892436> **\`${prefix}unban\`**
+> <:question:795426662363430953> Description: UnBans a member.
 
-<:hashtagandro:795426662216892436> **\`${prefix}lock\`**
-<:question:795426662363430953> Description: Disables everyone from sending messages in specific channel.
+> <:hashtagandro:795426662216892436> **\`${prefix}bans\`**
+> <:question:795426662363430953> Description: List you all the banned members.
 
-<:hashtagandro:795426662216892436> **\`${prefix}unlock\`**
-<:question:795426662363430953>Description: Removes denied sending messages from everyone in specific channel.
+> <:hashtagandro:795426662216892436> **\`${prefix}lock / unlock\`**
+> <:question:795426662363430953> Description: Disables / Enables everyone from sending messages in specific channel.
 
-<:hashtagandro:795426662216892436> **\`${prefix}show\`**
-<:question:795426662363430953> Description: Disables everyone from seeing a specific channel.
-
-<:hashtagandro:795426662216892436> **\`${prefix}hide\`**
-<:question:795426662363430953> Description: Removes denied seeing channel from everyone in specific channel.
+> <:hashtagandro:795426662216892436> **\`${prefix}show / hide\`**
+> <:question:795426662363430953> Description: Disables / Enables everyone from seeing a specific channel.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
+<:boost:801332804524179457> **Bot version: **\`v1.0\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
-`)
-.setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+  `)
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -174,35 +174,36 @@ client.on('message', message => {//$help admin | Help
 
 client.on('message', message => {//$help Music | Help
 
-  if (message.content === prefix + "help music") {
+  if (message.content.toLowerCase() === prefix + "help music") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-	.setTitle('<:music:806928505236750426>** | Music Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
-    .setColor("#d1afd2")
-    .setDescription(`
+    .setAuthor(message.guild.name, message.guild.iconURL())
+    .setTitle('<:music:806928505236750426>** | Music Commands**')
+    .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+      .setColor("#d1afd2")
+      .setDescription(`
 \`Note: Spotify is not supported at the moment❗\`
 
-<:hashtagandro:795426662216892436> **\`${prefix}play\`**
-<:question:795426662363430953> Description: Plays a song.
+> <:hashtagandro:795426662216892436> **\`${prefix}play\`**
+> <:question:795426662363430953> Description: Plays a song.
 
-<:hashtagandro:795426662216892436> **\`${prefix}stop\`**
-<:question:795426662363430953> Description: Stops the queue.
+> <:hashtagandro:795426662216892436> **\`${prefix}stop\`**
+> <:question:795426662363430953> Description: Stops the queue.
 
-<:hashtagandro:795426662216892436> **\`${prefix}loop\`**
-<:question:795426662363430953> Description: Loops the song/queue.
+> <:hashtagandro:795426662216892436> **\`${prefix}loop\`**
+> <:question:795426662363430953> Description: Loops the song/queue.
 
-<:hashtagandro:795426662216892436> **\`${prefix}queue\`**
-<:question:795426662363430953> Description: Shows you the current queue.
+> <:hashtagandro:795426662216892436> **\`${prefix}queue\`**
+> <:question:795426662363430953> Description: Shows you the current queue.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
+<:boost:801332804524179457> **Bot version: **\`v1.0\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
-`)
-.setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+  `)
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -210,39 +211,58 @@ client.on('message', message => {//$help Music | Help
 
 client.on('message', message => {//$help fun | Help
 
-  if (message.content === prefix + "help fun") {
+  if (message.content.toLowerCase() === prefix + "help fun") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-	.setTitle('<:rocket:795426662408912947>** | Fun Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
-    .setColor("#d1afd2")
-    .setDescription(`
-<:hashtagandro:795426662216892436> **\`${prefix}wasted\`**
-<:question:795426662363430953> Description: Wasted effect on someone's avatar.
+    .setAuthor(message.guild.name, message.guild.iconURL())
+    .setTitle('<:rocket:795426662408912947>** | Fun Commands**')
+    .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+      .setColor("#d1afd2")
+      .setDescription(`
+> <:hashtagandro:795426662216892436> **\`${prefix}cuttweet\`**
+> <:question:795426662363430953> Description: Gives you random questions to answer.
 
-<:hashtagandro:795426662216892436> **\`${prefix}iq\`**
-<:question:795426662363430953> Description: Gets someone's IQ.
+> <:hashtagandro:795426662216892436> **\`${prefix}imposter\`**
+> <:question:795426662363430953> Description: Imposter image on a member's name.
 
-<:hashtagandro:795426662216892436> **\`${prefix}spin\`**
-<:question:795426662363430953> Description: Spin the fruits.
+> <:hashtagandro:795426662216892436> **\`${prefix}trash\`**
+> <:question:795426662363430953> Description: Trash effect on someone's avatar.
 
-<:hashtagandro:795426662216892436> **\`${prefix}slap\`**
-<:question:795426662363430953> Description: Slap a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}delete\`**
+> <:question:795426662363430953> Description: Delete effect on someone's avatar.
 
-<:hashtagandro:795426662216892436> **\`${prefix}hug\`**
-<:question:795426662363430953> Description: Hug a member.
+> <:hashtagandro:795426662216892436> **\`${prefix}wasted\`**
+> <:question:795426662363430953> Description: Wasted effect on someone's avatar.
 
-<:hashtagandro:795426662216892436> **\`${prefix}dice\`**
-<:question:795426662363430953> Description: Roll a dice.
+> <:hashtagandro:795426662216892436> **\`${prefix}iq\`**
+> <:question:795426662363430953> Description: Gets someone's IQ.
 
-<:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
-<:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
-<:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
-<:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
-`)
-.setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+> <:hashtagandro:795426662216892436> **\`${prefix}clap\`**
+> <:question:795426662363430953> Description: Clap for a member.
+
+> <:hashtagandro:795426662216892436> **\`${prefix}slap\`**
+> <:question:795426662363430953> Description: Slap a member.
+
+> <:hashtagandro:795426662216892436> **\`${prefix}spin\`**
+> <:question:795426662363430953> Description: Spin the fruits.
+
+> <:hashtagandro:795426662216892436> **\`${prefix}slap\`**
+> <:question:795426662363430953> Description: Slap a member.
+
+> <:hashtagandro:795426662216892436> **\`${prefix}hug\`**
+> <:question:795426662363430953> Description: Hug a member.
+
+> <:hashtagandro:795426662216892436> **\`${prefix}dice\`**
+> <:question:795426662363430953> Description: Roll a dice.
+
+  <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
+  <:boost:801332804524179457> **Bot version: **\`v1.0\`
+  <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
+  <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
+  <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
+  `)
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -250,29 +270,30 @@ client.on('message', message => {//$help fun | Help
 
 client.on('message', message => {//$help ticket | Help
 
-  if (message.content === prefix + "help ticket") {
+  if (message.content.toLowerCase() === prefix + "help ticket") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
+    .setAuthor(message.guild.name, message.guild.iconURL())
 	.setTitle('<:maintenance:795426662350192643>** | Ticket Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
+  .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
     .setColor("#d1afd2")
     .setDescription(`
 \`If you are a server owner you need to create **Support Team** Role like this excatly to enable the Ticket commands.\`
 
-<:hashtagandro:795426662216892436> **\`${prefix}new\`**
-<:question:795426662363430953> Description: Create a new ticket.
+> <:hashtagandro:795426662216892436> **\`${prefix}new\`**
+> <:question:795426662363430953> Description: Create a new ticket.
 
-<:hashtagandro:795426662216892436> **\`${prefix}close\`**
-<:question:795426662363430953> Description: Closes a ticket.
+> <:hashtagandro:795426662216892436> **\`${prefix}close\`**
+> <:question:795426662363430953> Description: Closes a ticket.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
+<:boost:801332804524179457> **Bot version: **\`v1.0\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
 `)
 .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -280,68 +301,230 @@ client.on('message', message => {//$help ticket | Help
 
 client.on('message', message => {//$help giveaway | Help
 
-  if (message.content === prefix + "help giveaway") {
+  if (message.content.toLowerCase() === prefix + "help giveaway") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-	.setTitle('<:Partypopperandro:795426662590185492>** | Giveaway Commands**')
-  .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
-    .setColor("#d1afd2")
-    .setDescription(`
-<:hashtagandro:795426662216892436> **\`${prefix}gstart [winners] [time] [prize]\`**
-<:question:795426662363430953> Description: Starts a giveaway.
+    .setAuthor(message.guild.name, message.guild.iconURL())
+    .setTitle('<:Partypopperandro:795426662590185492>** | Giveaway Commands**')
+    .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+      .setColor("#d1afd2")
+      .setDescription(`
+  > <:hashtagandro:795426662216892436> **\`${prefix}gstart [winners] [time] [prize]\`**
+  > <:question:795426662363430953> Description: Starts a giveaway.
 
-<:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v0.9.5\`
-<:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
-<:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
-<:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
-`)
-.setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+  <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
+  <:boost:801332804524179457> **Bot version: **\`v1.0\`
+  <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
+  <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
+  <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
+  `)
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
 });
 
 ////////////////Fun
+
+const cutar = [
+  'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
+  'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
+  'كت تويت | الحرية لـ ... ؟',
+  'كت تويت | قناة الكرتون المفضلة في طفولتك؟',
+  'كت تويت ‏| كلمة للصُداع؟',
+  'كت تويت ‏| ما الشيء الذي يُفارقك؟',
+  'كت تويت | موقف مميز فعلته مع شخص ولا يزال يذكره لك؟',
+  'كت تويت ‏| أيهما ينتصر، الكبرياء أم الحب؟',
+  'كت تويت | بعد ١٠ سنين ايش بتكون؟',
+  'كت تويت ‏| مِن أغرب وأجمل الأسماء التي مرت عليك؟',
+  '‏كت تويت | عمرك شلت مصيبة عن شخص برغبتك ؟',
+  'كت تويت | أكثر سؤال وجِّه إليك مؤخرًا؟',
+  '‏كت تويت | ما هو الشيء الذي يجعلك تشعر بالخوف؟',
+  '‏كت تويت | وش يفسد الصداقة؟',
+  '‏كت تويت | شخص لاترفض له طلبا ؟',
+  '‏كت تويت | كم مره خسرت شخص تحبه؟.',
+  '‏كت تويت | كيف تتعامل مع الاشخاص السلبيين ؟',
+  '‏كت تويت | كلمة تشعر بالخجل اذا قيلت لك؟',
+  '‏كت تويت | جسمك اكبر من عٌمرك او العكسّ ؟!',
+  '‏كت تويت |أقوى كذبة مشت عليك ؟',
+  '‏كت تويت | تتأثر بدموع شخص يبكي قدامك قبل تعرف السبب ؟',
+  'كت تويت | هل حدث وضحيت من أجل شخصٍ أحببت؟',
+  '‏كت تويت | أكثر تطبيق تستخدمه مؤخرًا؟',
+  '‏كت تويت | ‏اكثر شي يرضيك اذا زعلت بدون تفكير ؟',
+  '‏كت تويت | وش محتاج عشان تكون مبسوط ؟',
+  '‏كت تويت | مطلبك الوحيد الحين ؟',
+  '‏كت تويت | هل حدث وشعرت بأنك ارتكبت أحد الذنوب أثناء الصيام؟'
+]
+
+const cuten = [
+  'Cuttweet | Do you like pets? Do you have any?',
+  'Cuttweet | What was the last book you read?',
+  'Cuttweet | Do you like to cook?',
+  'Cuttweet | Have you ever lived in another country?',
+  'Cuttweet | Have you ever met a famous person?',
+  'Cuttweet | What do you do in your free time?',
+  'Cuttweet | What kind of food do you prefer eating when you eat out?',
+  'Cuttweet | What kind of people do you like?',
+  'Cuttweet | What languages do you know how to speak?',
+  'Cuttweet | What was the last movie you have seen?',
+  'Cuttweet | If you could choose a place anywhere in the world to live for a year, where would it be?',
+  'Cuttweet | If you could you try any kind of activity, what activity would you try?',
+  'Cuttweet | What super-power would you most like to have, and why?',
+  'Cuttweet | If you had $5 million to spend in 5 days, but you could not spend any of it on yourself or your family, what would you do with it?',
+  'Cuttweet | What would your dream house be like?',
+  'Cuttweet | If you could change something about the world, what would it be & why?',
+  'Cuttweet | When was the last time you laughed so hard you cried?',
+  'Cuttweet | What do you prefer – spontaneity or stability?',
+  'Cuttweet | Do you love kids?',
+  'Cuttweet | Tell me about a favorite event of your adulthood/childhood.',
+  'Cuttweet | What are your hobbies or special interests?'
+]
+
+client.on("message", message => {//$cuttweet | Fun
+  if (message.content.toLowerCase() === prefix + "cuttweet") {
+    if (message.author.bot) return;
+const Embed = new Discord.MessageEmbed()
+.setTitle("**<:question:795426662363430953> Choose Cuttweet language:**")
+.setColor("#d1afd2")
+.setDescription(`
+\`Note: Cuttweet is random questions that you need to answer them.\`
+
+:flag_sa: **Arabic cuttweet:** \`$cut ar\`
+
+:flag_us: **English cuttweet:** \`$cut en\`
+  `)
+.setTimestamp()
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+message.channel.send(Embed);
+  }
+});
+
+client.on("message", message => {//$cut en | Fun
+if (message.content.toLowerCase() === prefix + "cut en") {
+  if (message.author.bot) return;
+  const Embed = new Discord.MessageEmbed()
+  .setTitle(`**<:question:795426662363430953> ${cuten[Math.floor(Math.random() * cuten.length)]}**`)
+  .setImage("https://cdn.discordapp.com/attachments/573642065024385036/826893403274346506/bar.png")
+  .setColor("#d1afd2")
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+  message.channel.send(Embed);
+
+}
+});
+
+client.on("message", message => {//$cut ar | Fun
+if (message.content.toLowerCase() === prefix + "cut ar") {
+  if (message.author.bot) return;
+  const Embed = new Discord.MessageEmbed()
+  .setTitle(`**${cutar[Math.floor(Math.random() * cutar.length)]} <:question:795426662363430953>**`)
+  .setImage("https://cdn.discordapp.com/attachments/573642065024385036/826893403274346506/bar.png")
+  .setColor("#d1afd2")
+  .setTimestamp()
+  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+  message.channel.send(Embed);
+
+}
+});
+
  client.on("message", message => { //$slap | Fun
 
-    if (message.content.startsWith(prefix + "slap")) {
+    if (message.content.toLowerCase().startsWith(prefix + "slap")) {
 			if (message.author.bot) return;
        if (!message.channel.guild) return message.channel.send(':no_entry: **This command is for servers only** :no_entry:');
      var messageslap = message.mentions.members.first()
-
      if(!message.mentions.members.first()) return message.channel.send(`:no_entry: **Please mention someone** :no_entry:`);
-     var messageembed = new Discord.MessageEmbed()
+     var Embed = new Discord.MessageEmbed()
       .setTitle('Slap!')
 	    .setDescription(`${message.author} Slapped ${messageslap} 😂`)
       .setImage(`https://media1.tenor.com/images/c724e1c1ddef332e3c95165c09e5b7e2/tenor.gif?itemid=16184358`)
 
       .setColor("#d1afd2")
       .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
-      message.channel.send(messageembed);
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+      message.channel.send(Embed);
 }
 
 });
 
+client.on("message", message => { //$clap | Fun
+
+   if (message.content.toLowerCase().startsWith(prefix + "clap")) {
+     if (message.author.bot) return;
+      if (!message.channel.guild) return message.channel.send(':no_entry: **This command is for servers only** :no_entry:');
+    var messageclap = message.mentions.members.first()
+    if(!message.mentions.members.first()) return message.channel.send(`:no_entry: **Please mention someone** :no_entry:`);
+    var Embed = new Discord.MessageEmbed()
+     .setTitle('Clap!')
+     .setDescription(`${message.author} clapped for ${messageclap} :clap:`)
+     .setImage(`https://media1.tenor.com/images/8b8decdd935ad1049e0e125b51d8b13d/tenor.gif?itemid=12591824`)
+     .setColor("#d1afd2")
+     .setTimestamp()
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+     message.channel.send(Embed);
+}
+
+});
+
+
+
+
 client.on('message', message => {//$wasted | Fun
-  if (message.content.startsWith(prefix + "wasted")) {
+  if (message.content.toLowerCase().startsWith(prefix + "wasted")) {
     if (message.author.bot) return;
     const user= message.mentions.users.first()||message.author
 const Embed = new Discord.MessageEmbed()
 .setTitle(`:boom: **WASTED!** :boom:`)
-.setImage(`https://some-random-api.ml/canvas/wasted/?avatar=${user.avatarURL({ format: 'png', dynamic: true, size: 1024 })}`)
+.setImage(`https://some-random-api.ml/canvas/wasted/?avatar=${user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })}`)
 .setColor("#d1afd2")
 .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
 message.channel.send(Embed);
+  }
+});
+
+client.on('message', message => {//$imposter | Fun
+  if (message.content.toLowerCase().startsWith(prefix + "imposter")) {
+    if (message.author.bot) return;
+    const user= message.mentions.users.first()||message.author
+const Embed = new Discord.MessageEmbed()
+.setTitle(`:knife: **IMPOSTER!** :knife:`)
+.setImage(`https://vacefron.nl/api/ejected?name=${user.username}&imposter=true&crewmate=red`)
+.setColor("#d1afd2")
+.setTimestamp()
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
+message.channel.send(Embed);
+  }
+});
+
+client.on("message", async message => {//$delete | Fun
+    if (message.content.toLowerCase().startsWith(prefix + "delete")) {
+              let user = message.mentions.users.first();
+              if(!user) return message.channel.send(":no_entry: **You need to mention someone.** :no_entry:")
+        let avatar = message.author.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+        const avatar2 = user.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+        let img = await new DIG.Delete().getImage(`${avatar2}`);
+        let attach = new Discord.MessageAttachment(img, "Delete.png");;
+        message.channel.send(attach)
+    }
+});
+
+client.on("message", async message => {//$trash | Fun
+  if (message.content.toLowerCase().startsWith(prefix + "trash")) {
+            let user = message.mentions.users.first();
+            if(!user) return message.channel.send(":no_entry: **You need to mention someone.** :no_entry:")
+      let avatar = message.author.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+      const avatar2 = user.displaydisplayAvatarURL({ dynamic: false, format: 'png' });
+      let img = await new DIG.Trash().getImage(`${avatar2}`);
+      let attach = new Discord.MessageAttachment(img, "Delete.png");;
+      message.channel.send(attach)
   }
 });
 
 client.on("message", message => { //$iq | Fun
 
-  if (message.content.startsWith(prefix + "iq")) {
+  if (message.content.toLowerCase().startsWith(prefix + "iq")) {
     if (message.author.bot) return;
      if (!message.channel.guild) return message.channel.send(':no_entry: **This command is for servers only** :no_entry:');
    var messageiq = message.mentions.members.first() || message.author
@@ -352,7 +535,7 @@ client.on("message", message => { //$iq | Fun
     .setDescription(`${messageiq} IQ Level is \`${iq}%\` 🧠`)
     .setColor("#d1afd2")
     .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
     message.channel.send(messageembed);
 
 }
@@ -361,7 +544,7 @@ client.on("message", message => { //$iq | Fun
 
  client.on("message", message => { //$hug | Fun
 
-    if (message.content.startsWith(prefix + "hug")) {
+    if (message.content.toLowerCase().startsWith(prefix + "hug")) {
 			if (message.author.bot) return;
        if (!message.channel.guild) return message.channel.send(':no_entry: **This command is for servers only!** :no_entry:');
      var messagehug = message.mentions.members.first()
@@ -373,25 +556,24 @@ client.on("message", message => { //$iq | Fun
       .setImage(`https://media1.tenor.com/images/78900be69903453202d96d16e0e9ef3f/tenor.gif?itemid=14611093`)
       .setColor("#d1afd2")
       .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
       message.channel.send(Embed);
 }
-
 });
 
 client.on('message', message => {//$dice | Fun
 
-  if(message.content === prefix + "dice") {
+  if(message.content.toLowerCase() === prefix + "dice") {
 	  var dice =["1🎲","2🎲","3🎲","4🎲","5🎲","6🎲","7🎲","8🎲","9🎲","10🎲"]
 			if (message.author.bot) return;
        if (!message.channel.guild) return message.channel.send(':no_entry: **This command is for servers only!** :no_entry:');
    var Embed = new Discord.MessageEmbed()
   .setTitle('Dice Roll!')
-  .setThumbnail(message.author.avatarURL())
+  .setThumbnail(message.author.displayAvatarURL())
   .setDescription(dice[Math.floor(Math.random() * dice.length)])
    .setColor('#d1afd2')
    .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
   message.channel.send(Embed);
   }
 
@@ -399,7 +581,7 @@ client.on('message', message => {//$dice | Fun
 
 client.on('message', message => {//$spin | Fun
 
-    if (message.content === prefix + "spin") {
+    if (message.content.toLowerCase() === prefix + "spin") {
       if (message.author.bot) return;
 		var winlose = message.mentions.members.first() || message.author
         let slot1 = ['🍇', '🍒', '🍓'];
@@ -416,7 +598,7 @@ client.on('message', message => {//$spin | Fun
 		.setDescription(`${slots1} | ${slots2} | ${slots3} - ${result}`)
 		.setColor('#d1afd2')
     .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
 		message.channel.send(Embed);
     }
 
@@ -424,9 +606,8 @@ client.on('message', message => {//$spin | Fun
 
 ////////////////Member
 
-const shorten = require("isgd");
 client.on("message", message => {//$short | General
-  if (message.content.startsWith(prefix + "short")) {
+  if (message.content.toLowerCase().startsWith(prefix + "short")) {
     if (message.author.bot) return;
     if (!message.channel.guild) return;
     message.channel;
@@ -450,7 +631,7 @@ client.on("message", message => {//$short | General
 });
 
 client.on('message', message => {//$invites | General
-  if(message.content.startsWith(prefix + "invites")){
+  if(message.content.toLowerCase().startsWith(prefix + "invites")){
     if (message.author.bot) return;
     if(!message.guild.me.hasPermission('MANAGE_GUILD')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_GUILD** :no_entry:')
       var user = null;
@@ -472,7 +653,7 @@ client.on('message', message => {//$invites | General
                   .setDescription(`**${user} has ${userInviteCount} Invites :dizzy:**`)
                   .setColor("#d1afd2")
                   .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
                   message.channel.send(Embed);
           }
       )
@@ -481,14 +662,20 @@ client.on('message', message => {//$invites | General
 
 client.on('message', message => {//$inv | General
 
-  if (message.content === prefix + "inv") {
+  if (message.content.toLowerCase() === prefix + "inv") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
-    .setTitle('Invite AndroBot and start giving your server cool perks! :zap:')
+     .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+    .setTitle('**AndroBot Links:**')
     .setColor("#d1afd2")
-    .setDescription('**[Click here  :eyes:](https://discord.com/api/oauth2/authorize?client_id=717762382524579841&permissions=8&scope=bot)**')
+    .setDescription(`<:hashtagandro:795426662216892436> **[AndroBot Invite](https://androbot.xyz/invite)**
+
+<:question:795426662363430953> **[AndroBot Support](https://discord.gg/9rQCg5mUby)**
+
+<:internet:801183982418919454> **[AndroBot Website](https://androbot.xyz)**
+      `)
     .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+    .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -496,59 +683,15 @@ client.on('message', message => {//$inv | General
 
 client.on('message', message => {//$vote | General
 
-  if (message.content === prefix + "vote") {
+  if (message.content.toLowerCase() === prefix + "vote") {
 	  if (message.author.bot) return;
     const Embed = new Discord.MessageEmbed()
+     .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
     .setTitle('Thank you for helping us to grow! :heart:')
     .setColor("#d1afd2")
-    .setDescription('**[Click here to vote  :eyes:](https://discordbotlist.com/bots/androbot/upvote)**')
+    .setDescription('**[Click here to Vote](https://discordbotlist.com/bots/androbot/upvote)**')
     .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
- message.channel.send(Embed);
-  }
-
-});
-
-client.on('message', message => {//$support | General
-
-  if (message.content === prefix + "support") {
-	  if (message.author.bot) return;
-    const Embed = new Discord.MessageEmbed()
-    .setTitle('Need help? We are always here to help. Join our support server now. :construction_worker:')
-    .setColor("#d1afd2")
-    .setDescription('**[Click here  :eyes:](https://discord.gg/9rQCg5mUby)**')
-    .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
- message.channel.send(Embed);
-  }
-
-});
-
-client.on('message', message => {//$website | General
-
-  if (message.content === prefix + "website") {
-	  if (message.author.bot) return;
-    const Embed = new Discord.MessageEmbed()
-    .setTitle('Our website :globe_with_meridians:')
-    .setColor("#d1afd2")
-    .setDescription('**[Click here  :eyes:](https://androbot.xyz/)**')
-    .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
- message.channel.send(Embed);
-  }
-
-});
-
-client.on('message', message => {//$donate | General
-
-  if (message.content === prefix + "donate") {
-	  if (message.author.bot) return;
-    const Embed = new Discord.MessageEmbed()
-    .setTitle('Your donation is greatly appreciated. :heart:')
-    .setColor("#d1afd2")
-    .setDescription('**[Click here to donate  :heart:](https://paypal.me/zy4dyt)**')
-    .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+    .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
   }
 
@@ -556,26 +699,26 @@ client.on('message', message => {//$donate | General
 
 client.on('message', message => {//$dev | General
 
-if(message.content === prefix  + "dev") {
+if(message.content.toLowerCase() === prefix  + "dev") {
 	if (message.author.bot) return;
 
  let Embed = new Discord.MessageEmbed()
  .setColor("#d1afd2")
- .setThumbnail("https://cdn.discordapp.com/attachments/798658467061432360/817875459949723678/d9d080038b679d05313b458bc87791b6.png")
- .setTitle('Developer information')
- .addField(':crown:** Name:**',`Zyad`,false)
- .addField(':beginner:** Age:**',`14`,false)
- .addField(':earth_africa:** Country:**',`Saudi Arabia`,false)
- .addField(':id:** ID:**',`361855205664489475`,true)
+ .setThumbnail("https://cdn.discordapp.com/avatars/361855205664489475/859383b17affc25e594bbdef722b0db1.png?size=1024")
+ .setTitle('**AndroBot Developer:**')
+ .addField('<:crown:801332804674912266>** Name:**',`Zyad`,false)
+ .addField('<:ruleandro:795426662984581160>** Age:**',`14`,false)
+ .addField('<:internet:801183982418919454>** Country:**',`Saudi Arabia`,false)
+ .addField('<:twitter:795426662409175070>** Social:**',`[Twitter](https://twitter.com/AZy4d)`,false)
  .setTimestamp()
- .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+ .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
 }
 });
 
 client.on("message", message =>{//$avatar, $avatar server | General
 
-if(message.content === prefix + "avatar server"){
+if(message.content.toLowerCase() === prefix + "avatar server"){
 	if (message.author.bot) return;
     let dis = new Discord.MessageEmbed()
     .setColor('#d1afd2')
@@ -584,57 +727,39 @@ if(message.content === prefix + "avatar server"){
     .setURL(message.guild.iconURL({ format: 'png', dynamic: true, size: 1024 }))
     .setImage(message.guild.iconURL({ format: 'png', dynamic: true, size: 1024 }))
     .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+    .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
     message.channel.send(dis)
 
-} else if(message.content.startsWith(prefix + "avatar")){
+} else if(message.content.toLowerCase().startsWith(prefix + "avatar")){
 	if (message.author.bot) return;
-let user = message.mentions.users.first() || message.author
+let user = message.mentions.users.first() || message.author;
 let dis2 = new Discord.MessageEmbed()
-.setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL())
+.setAuthor(`${user.username}#${user.discriminator}`, user.displayAvatarURL())
 .setTitle("Avatar Link")
 .setColor('#d1afd2')
-.setURL(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
-.setImage(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
+.setURL(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+.setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
 .setTimestamp()
-.setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+.setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
 return message.channel.send(dis2)
 
 }
 });
 
-client.on('message', message => {//$user | General
-  if(message.content.startsWith (prefix  + "!user")) {
-      if (message.author.bot) return;
-    let user = message.mentions.members.first()
-   let Embed = new Discord.MessageEmbed()
-   .setColor("#d1afd2")
-     .setAuthor(user.username,user.avatarURL())
-   .setThumbnail(user.avatarURL())
-   .setTitle(`**User Info:**`)
-   .addField(':bust_in_silhouette:** Username:**',`[ ${user.tag} ]`,false)
-   .addField(':id:** ID:**',`[ ${user.id} ]`,false)
-   .addField(':date:** Created At:**',`[ ${user.createdAt.toLocaleString()} ]`,false)
-   .setTimestamp()
-   .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
-   message.channel.send(Embed);
-  }
-  });
-
   client.on('message', message => {//$user | General
-    if(message.content.startsWith (prefix  + "user")) {
+    if(message.content.toLowerCase().startsWith (prefix + "user")) {
         if (message.author.bot) return;
       let user = message.mentions.users.first() || message.author
      let Embed = new Discord.MessageEmbed()
      .setColor("#d1afd2")
-       .setAuthor(user.username,user.avatarURL())
-     .setThumbnail(user.avatarURL())
-     .setTitle(`**User Info:**`)
-     .addField(':bust_in_silhouette:** Username:**',`[ ${user.tag} ]`,false)
-     .addField(':id:** ID:**',`[ ${user.id} ]`,false)
-     .addField(':date:** Created At:**',`[ ${user.createdAt.toLocaleString()} ]`,false)
+       .setAuthor(user.username,user.displayAvatarURL())
+     .setThumbnail(user.displayAvatarURL())
+     .setTitle(`**User Data:**`)
+     .addField('<:hashtagandro:795426662216892436>** Username:**',`${user.tag}`,false)
+     .addField('<:general:801172797760995358>** ID:**',`${user.id}`,false)
+     .addField('<:ruleandro:795426662984581160>** Created At:**',`${user.createdAt.toLocaleString()}`,false)
      .setTimestamp()
-     .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+     .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
      message.channel.send(Embed);
     }
     });
@@ -642,20 +767,22 @@ client.on('message', message => {//$user | General
 
 client.on('message', message => {//$bot | General
 
-if(message.content === (prefix  + "bot")) {
+if(message.content.toLowerCase() === (prefix + "bot")) {
 	if (message.author.bot) return;
  let Embed = new Discord.MessageEmbed()
  .setColor("#d1afd2")
- .setThumbnail("https://cdn.discordapp.com/attachments/785215109710479437/793441456429203456/christmas_logo3.png")
- .setTitle(`**AndroBot:**`)
- .addField(':airplane:** Bot ping:**',`[ ${Math.round(client.ws.ping)}ms ]`,true)
- .addField(':earth_africa:** Servers:**',`[ ${client.guilds.cache.size} ]`,true)
- .addField(':beginner:** Users:**',`[ ${client.users.cache.size} ]`,true)
- .addField(':hash:** Channels:**',`[ ${client.channels.cache.size} ]`,true)
- .addField(':robot:** Bot ID:**',`[ ${client.user.id} ]`,true)
- .addField(':crown:** Bot developer:**',`[ Zyad#1947 ]`,false)
+ .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
+  .setTitle(`**AndroBot version: v1.0**`)
+ .setDescription("Hi! I'm Androbot a multi-purpose bot ready to skill up and boost up your Discord server also features auto-moderation, administration, and much more")
+ .addField('<:hashtagandro:795426662216892436>** latency:**',`${Math.round(client.ws.ping)}ms`,true)
+ .addField('<:sparklesandro:795426662757695528>** Guilds:**',`${client.guilds.cache.size}`,true)
+ .addField('<:general:801172797760995358>** Users:**',`${client.users.cache.size}`,true)
+ .addField('**<:profileandro:795426662988251186> Bot Developer:**',`[Zyad](https://twitter.com/AZy4d)`,true)
+ .addField('**<:internet:801183982418919454> Bot Website:**',`[Website](https://androbot.xyz/)`,true)
+ .addField('**<:question:795426662363430953> Bot Support:**',`[Support Server](https://discord.gg/9rQCg5mUby)`,true)
+ .addField('**<:rocket:795426662408912947> Invite AndroBot:**',`[Invite](https://androbot.xyz/invite)`,true)
  .setTimestamp()
- .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+ .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
 }
 
@@ -663,22 +790,21 @@ if(message.content === (prefix  + "bot")) {
 
 client.on('message', message => {//$server | General
 
-if(message.content === (prefix  + "server")) {
+if(message.content.toLowerCase() === (prefix  + "server")) {
 	if (message.author.bot) return;
  let Embed = new Discord.MessageEmbed()
  .setColor("#d1afd2")
  .setThumbnail(message.guild.iconURL())
- .setTitle(`**${message.guild.name}:**`)
- .addField(':globe_with_meridians:** Server region:**',`[ ${message.guild.region} ]`,true)
-  .addField(':medal:** Roles:**',`[ ${message.guild.roles.cache.size} ]`,true)
- .addField(':red_circle:** Members:**',`[ ${message.guild.memberCount} ]`,true)
- .addField(':pencil:** Text channels:**',`[ ${message.guild.channels.cache.filter(m => m.type === 'text').size} ]`,true)
- .addField(':microphone:** Voice channels:**',`[ ${message.guild.channels.cache.filter(m => m.type === 'voice').size} ]`,true)
- .addField(':crown:** Server owner:**',`${message.guild.owner}`,true)
- .addField(':id:** Server ID:**',`${message.guild.id}`,true)
- .addField(':date:** Created On:**',message.guild.createdAt.toLocaleString())
+ .setTitle(`**${message.guild.name} Data:**`)
+ .addField('<:internet:801183982418919454>** Server region:**',`${message.guild.region}`,true)
+  .addField('<:rocket:795426662408912947>** Roles:**',`${message.guild.roles.cache.size}`,true)
+ .addField('<:general:801172797760995358>** Members:**',`${message.guild.memberCount}`,true)
+ .addField('<:hashtagandro:795426662216892436>** Text channels:**',`${message.guild.channels.cache.filter(m => m.type === 'text').size}`,true)
+ .addField('<:sparklesandro:795426662757695528>:** Voice channels:**',`${message.guild.channels.cache.filter(m => m.type === 'voice').size}`,true)
+ .addField('<:crown:801332804674912266>** Server owner:**',`${message.guild.owner}`,true)
+ .addField('<:ruleandro:795426662984581160>** Created On:**',`${message.guild.createdAt.toLocaleString()}`,true)
  .setTimestamp()
- .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+ .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
 }
 
@@ -686,10 +812,10 @@ if(message.content === (prefix  + "server")) {
 
 client.on('message', message => {//$roles | General
 
-  if (message.content.startsWith(prefix + "roles")) {
+  if (message.content.toLowerCase().startsWith(prefix + "roles")) {
 	  if (message.author.bot) return;
     if(!message.guild.me.hasPermission('MANAGE_ROLES')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_ROLES** :no_entry:')
-      const Rank = message.guild.roles.cache.map(e => e.toString()).join(" ");
+      const Rank = message.guild.roles.cache.map(e => e.toString()).join("\n");
 
       let Embed = new Discord.MessageEmbed()
           .setTitle(`**${message.guild.name} Roles :**`)
@@ -697,7 +823,7 @@ client.on('message', message => {//$roles | General
           .setColor("#d1afd2")
           .setDescription(Rank)
           .setTimestamp()
-          .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+          .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
       message.channel.send(Embed)
   }
 
@@ -705,9 +831,9 @@ client.on('message', message => {//$roles | General
 
 client.on('message', message => {//$emojis | General
 
-  if (message.content.startsWith(prefix + "emojis")) {
+  if (message.content.toLowerCase().startsWith(prefix + "emojis")) {
 	  if (message.author.bot) return;
-    if(!message.guild.me.hasPermission('MANAGE_EMOJIS')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_EMOJIS** :no_entry:')
+    if(!message.guild.me.hasPermission('MANAGE_EMOJIS')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **MANAGE_EMOJIS** :no_entry:')
       const emojis = message.guild.emojis.cache.map(e => e.toString()).join(" ");
 
       let Embed = new Discord.MessageEmbed()
@@ -716,7 +842,7 @@ client.on('message', message => {//$emojis | General
           .setColor("#d1afd2")
           .setDescription(emojis)
           .setTimestamp()
-          .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+          .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
       message.channel.send(Embed)
   }
 
@@ -724,9 +850,48 @@ client.on('message', message => {//$emojis | General
 
 ////////////////Admin
 
-client.on('message', async message => {//$mute | Admin
-  if(message.content.startsWith(prefix + 'mute')) {
+client.on("message", message => {//$setnick | Admin
+  if (message.content.toLowerCase().startsWith(prefix + "setnick")) {
     if (message.author.bot) return;
+    if(!message.guild.me.hasPermission('MANAGE_NICKNAMES')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **MANAGE_NICKNAMES** :no_entry:')
+    if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send(`:no_entry: You do not have the Permission to do this action. **MANAGE_NICKNAMES** :no_entry:`);
+    var user = message.mentions.members.first();
+    var args = message.content.split(" ").slice(2);
+    var nick = args.join(" ");
+    if (!user || !args) return message.channel.send(`:no_entry:** Usage: $setnick [member] [nickname] **:no_entry:`);
+    let userrole = message.guild.member(user).roles.highest;
+       let merole = message.guild.me.roles.highest;
+       if (userrole.position > merole.position) {
+         return message.channel.send(`:no_entry: **I couldn't change nick for that user. Please check my permissions and role position.** :no_entry:`);
+       }
+       if (!nick) return message.channel.send(`✅ **${user} nickname has been reset.**`);
+    message.guild.member(user.user).setNickname(`${nick}`);
+    message.channel.send(`✅ **${user}** nickname changed to ${nick}.`);
+  }
+});
+
+
+client.on('message', async message => {//$vkick | Admin
+  if(message.content.toLowerCase().startsWith(prefix + "vkick")){
+    if(!message.guild.me.hasPermission('MOVE_MEMBERS')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **MOVE_MEMBERS** :no_entry:')
+    if(!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send(`:no_entry: You do not have the Permission to do this action. **MOVE_MEMBERS** :no_entry:`);
+              if (!message.channel.guild) return message.channel.send(':no_entry: This command is only for servers! :no_entry:');
+
+ let user = message.guild.member(
+  message.mentions.users.first())
+
+        if(!user) return message.channel.send(`:no_entry: ** Usage: ${prefix}vkick [member] ** :no_entry:`)
+         if (!message.guild.member(user).voice.channel) return message.channel.send(":no_entry:** This member is not in a voice channel! **:no_entry:")
+    await user.voice.kick()
+    message.channel.send(`✅ **${user} has been voice kicked.**`)
+  }
+
+});
+
+client.on('message', async message => {//$mute | Admin
+  if(message.content.toLowerCase().startsWith(prefix + 'mute')) {
+    if (message.author.bot) return;
+    if(!message.guild.me.hasPermission('ADMINISTRATOR')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **ADMINISTRATOR** :no_entry:')
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`:no_entry: You do not have the Permission to do this action. **ADMINISTRATOR** :no_entry:`);
     var args = message.content.split(" ").slice(2).join(" ")
 
@@ -767,15 +932,15 @@ client.on('message', async message => {//$mute | Admin
    By : ${message.author}
   **`)
   .setColor("#d1afd2")
-  .setFooter('Id ' + message.author.id, message.author.avatarURL())
+  .setFooter('Id ' + message.author.id, message.author.displayAvatarURL())
   member.send(Embed);
   }
   });
 
 client.on('message', async message => {//$unmute | Admin
-if(message.content.startsWith(prefix + 'unmute')) {
+if(message.content.toLowerCase().startsWith(prefix + 'unmute')) {
   if (message.author.bot) return;
-  if(!message.guild.me.hasPermission('ADMINISTRATOR')) return message.reply(':no_entry: I do not have the Permission to do this action. **ADMINISTRATOR** :no_entry:')
+  if(!message.guild.me.hasPermission('ADMINISTRATOR')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **ADMINISTRATOR** :no_entry:')
 if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`:no_entry: You do not have the Permission to do this action. **ADMINISTRATOR** :no_entry:`);
 let mention = message.mentions.members.first();
 var args = message.content.split(" ").slice(2).join(" ")
@@ -795,7 +960,7 @@ let Embed = new Discord.MessageEmbed()
  By : ${message.author}
 **`)
 .setColor("#d1afd2")
-.setFooter('Id ' + message.author.id, message.author.avatarURL())
+.setFooter('Id ' + message.author.id, message.author.displayAvatarURL())
 member.send(Embed);
 }
 });
@@ -839,8 +1004,7 @@ client.on('message', async (message) => { //$clear | Admin
 });
 
 client.on("message", message => {//$unban | Admin
-  let command = message.content.split(" ")[0];
-  if (command == prefix + "unban") {
+  if (message.content.toLowerCase().startsWith (prefix + "unban")) {
     if (message.author.bot) return;
     if(!message.guild.me.hasPermission('BAN_MEMBERS')) return message.reply(':no_entry: I do not have the Permission to do this action. **BAN_MEMBERS** :no_entry:')
 if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply(':no_entry: You do not have the Permission to do this action. **BAN_MEMBERS** :no_entry:')
@@ -865,7 +1029,7 @@ if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply(':no_entry
 
 client.on('message', message => {//$bans | Admin
 
-  if (message.content === prefix + "bans") {
+  if (message.content.toLowerCase() === prefix + "bans") {
 	  if (message.author.bot) return;
     if (!message.channel.guild) return;
     if(!message.guild.me.hasPermission('MANAGE_GUILD')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_GUILD** :no_entry:')
@@ -880,7 +1044,7 @@ client.on('message', message => {//$bans | Admin
     .setDescription(`**:house_abandoned: ${banned.size} is banned on this server!**`)
     .setColor("#d1afd2")
     .setTimestamp()
-    .setFooter(`Requested By ${message.author.tag}`, message.author.avatarURL())
+    .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
    message.channel.send(Embed)
     .catch(console.error)
 
@@ -890,7 +1054,7 @@ client.on('message', message => {//$bans | Admin
 
 client.on('message', message =>{//$ban | Admin
 
-if(message.content.startsWith(prefix + "ban")){
+if(message.content.toLowerCase().startsWith(prefix + "ban")){
 	if(message.content === prefix + "bans") return;
 	    var member = message.mentions.members.first()
 var memb = message.content.split(" ").slice(2).join(" ")
@@ -913,7 +1077,7 @@ var memb = message.content.split(" ").slice(2).join(" ")
 
 client.on('message', message =>{//$kick | Admin
 
-  if(message.content.startsWith(prefix + "kick")){
+  if(message.content.toLowerCase().startsWith(prefix + "kick")){
         var member = message.mentions.members.first()
   var memb = message.content.split(" ").slice(2).join(" ")
       if(message.channel.type === "dm") return;
@@ -944,7 +1108,7 @@ client.on('message', message =>{//$kick | Admin
 
   let args = message.content.split(" ").slice(1);
 
-  if (command === "say") {
+  if (command.toLowerCase() === "say") {
 	  		  if (message.author.bot) return;
     if (!message.channel.guild)
       return message.channel
@@ -956,7 +1120,7 @@ client.on('message', message =>{//$kick | Admin
     message.delete();
     message.channel.send(args.join(" "));
   }
-  if (command == "embed") {
+  if (command.toLowerCase() == "embed") {
 	  		  if (message.author.bot) return;
     if (!message.channel.guild)
       return message.channel
@@ -976,10 +1140,10 @@ client.on('message', message =>{//$kick | Admin
 
 client.on('message', message => {//$lock & $unlock | Admin
 
-    if (message.content === prefix + "lock") {
+    if (message.content.toLowerCase() === prefix + "lock") {
 			   if (message.author.bot) return;
                         if(!message.channel.guild) return  message.channel.send(':no_entry: This command is only for servers! :no_entry:');
-	  if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_CHANNELS** :no_entry:')
+	  if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) return message.channel.send(':no_entry: I do not have the Permission to do this action. **MANAGE_CHANNELS** :no_entry:')
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return  message.channel.send(':no_entry: You do not have the Permission to do this action. **MANAGE_CHANNELS** :no_entry:');
            message.channel.updateOverwrite(message.guild.id, {
          SEND_MESSAGES: false
@@ -988,7 +1152,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return  message.channel.sen
                 message.channel.send(`🔒** <#${message.channel.id}> has been locked.**`)
            });
              }
-if (message.content === prefix + "unlock") {
+if (message.content.toLowerCase() === prefix + "unlock") {
 		   if (message.author.bot) return;
     if(!message.channel.guild) return  message.channel.send(':no_entry: This command is only for servers! :no_entry:');
 
@@ -1007,7 +1171,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return  message.channel.sen
 
 client.on('message', message => {//$show & $hide | Admin
 
-    if (message.content === prefix + "show") {
+    if (message.content.toLowerCase() === prefix + "show") {
 			   if (message.author.bot) return;
                         if(!message.channel.guild) return  message.channel.send(':no_entry: This command is only for servers! :no_entry:');
 	  if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) return message.reply(':no_entry: I do not have the Permission to do this action. **MANAGE_CHANNELS** :no_entry:')
@@ -1019,7 +1183,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return  message.channel.sen
                 message.channel.send(`✅** <#${message.channel.id}> has been shown.**`)
            });
              }
-if (message.content === prefix + "hide") {
+if (message.content.toLowerCase() === prefix + "hide") {
 		   if (message.author.bot) return;
     if(!message.channel.guild) return  message.channel.send(':no_entry: This command is only for servers! :no_entry:');
 
@@ -1038,13 +1202,12 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return  message.channel.sen
 ////////////////Music
 
 client.on("message", message => {
-  if(message.content === prefix + "play") {
+  if(message.content.toLowerCase() === prefix + "play") {
     message.channel.send(":no_entry:** You didn't gave me something to play! **:no_entry:")
   }
 });
 
-const DisTube = require('distube');
-const { replace } = require('ffmpeg-static');
+
 const distube = new DisTube(client, { searchSongs: true, emitNewSongOnly: true });
 
 client.on("message", async (message) => {
@@ -1052,28 +1215,28 @@ client.on("message", async (message) => {
   if (!message.content.startsWith(prefix)) return;
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift();
-  if (command == "play"){
+  if (command.toLowerCase() == "play"){
  distube.play(message, args.join(" "));
   }
 
-  if (command == "loop") {
+  if (command.toLowerCase() == "loop") {
     let mode = distube.setRepeatMode(message, parseInt(args[0]));
     mode = mode ? mode == 2 ? "Loop queue" : "Loop song" : "Off";
     message.channel.send(":white_check_mark: **Loop mode has been set to `" + mode + "`**");
 }
 
-  if (command == "stop") {
+  if (command.toLowerCase() == "stop") {
       distube.stop(message);
       message.channel.send(":white_check_mark: **Music has been stopped.**");
   }
 
-  if (command == "skip") {
+  if (command.toLowerCase() == "skip") {
     distube.skip(message);
     message.channel.send(":white_check_mark: **Music has been skipped.**")
   }
 
 
-  if (command == "queue") {
+  if (command.toLowerCase() == "queue") {
       let queue = distube.getQueue(message);
       if(!queue) return message.channel.send(":no_entry:** The Queue is empty! **:no_entry:")
       message.channel.send('Current queue:\n' + queue.songs.map((song, id) =>
@@ -1112,19 +1275,17 @@ distube
   .on("searchCancel", (message) => message.channel.send(`Searching canceled`))
   .on("error", (message, e) => {
       console.error(e)
-      message.channel.send(":no_entry:** Androbot doesn't support this URL at the moment. **:no_entry:");
   });
-
 
 ////////////////Other
 
 client.on("message", message => {//$!servers | Other
 
-  if (message.content.startsWith(prefix + "!servers")) {
+  if (message.content.toLowerCase().startsWith(prefix + "!servers")) {
     if (message.author.bot) return;
     if (message.author.id !== "361855205664489475" && message.author.id !== "518020270389198848") {
       message.channel.send(
-        `:no_entry: **Sorry ${message.author.username} You Can't Use This Command** :no_entry:`
+        `:no_entry: **Sorry ${message.author.username} You Can't Use This Command!** :no_entry:`
       );
     } else {
       let servers = " ";
@@ -1139,8 +1300,38 @@ client.on("message", message => {//$!servers | Other
 
 });
 
-client.on('message', message =>{//suggestions
-  var channel =  message.channel.id === "785225123799760917"
+client.on("message", message => {//$!des | Other
+  if (message.content.toLowerCase().startsWith(prefix + "!des")) {
+    if (message.author.bot) return;
+    if (message.author.id !== "361855205664489475") {
+      message.channel.send(
+        `:no_entry: **Sorry ${message.author.username} You Can't Use This Command!** :no_entry:`
+      );
+    } else {      message.reply("Destroying...");
+          message.reply("..");
+          client.channels.cache.get("801476479245456380095026")
+          .send(new Discord.MessageEmbed()
+          .setAuthor(client.user.username,client.user.displayAvatarURL())
+          .setColor("RED")
+          .setDescription(`::!`))}
+
+}
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content.toLowerCase() === prefix + "!check") {
+    if (message.author.id !== "361855205664489475") {
+      message.channel.send(
+        `:no_entry: **Sorry ${message.author.username} You Can't Use This Command!** :no_entry:`
+      );
+    } else { message.reply("Im online!");
+}
+  }
+});
+
+client.on('message', message =>{//suggestions | Other
+  var channel =  message.channel.id === "813773963104223262"
   if (message.author.id == "361855205664489475") return;
  if (!channel) return false;
   let suggestion = message.content.split(" ").slice('').join(" ")
@@ -1150,23 +1341,24 @@ client.on('message', message =>{//suggestions
   message.delete()
   var Embed = new Discord.MessageEmbed()
   .setTitle("<:sparklesandro:795426662757695528> New Suggestion: ")
-  .setThumbnail(message.author.avatarURL())
+  .setThumbnail(message.author.displayAvatarURL())
   .setColor("#d1afd2")
   .setDescription(`From: <@${message.author.id}>
   **Suggestion: ${suggestion}**`)
   .setTimestamp()
-  .setFooter(`Suggestion by: ${message.author.tag}`, message.author.avatarURL());
+  .setFooter(`Suggestion by: ${message.author.tag}`, message.author.displayAvatarURL());
   message.channel.send(Embed).then(embedMessage => {
     embedMessage.react(client.emojis.cache.get("795426662103384085"))
     embedMessage.react(client.emojis.cache.get("795426662069305366"))
-     })
-    }
+  })
+
+     }
 });
 
 client.on('guildCreate', guild => {//new server | Other
         client.channels.cache.get("801476479380095026")
         .send(new Discord.MessageEmbed()
-        .setAuthor(client.user.username,client.user.avatarURL())
+        .setAuthor(client.user.username,client.user.displayAvatarURL())
         .setColor("GREEN")
         .setDescription(`> ${client.user.username} has **Joined** a new Server 🎉
  **ServerName:** ${guild.name}
@@ -1177,7 +1369,7 @@ client.on('guildCreate', guild => {//new server | Other
         client.on('guildDelete', guild => {//leave server | Other
             client.channels.cache.get("801476479380095026")
             .send(new Discord.MessageEmbed()
-        .setAuthor(client.user.username,client.user.avatarURL())
+        .setAuthor(client.user.username,client.user.displayAvatarURL())
         .setColor("RED")
         .setDescription(`> ${client.user.username} has **Leave** from a new Server 💔
 **ServerName:** ${guild.name}
@@ -1191,7 +1383,7 @@ client.on('guildCreate', guild => {//new server | Other
 
 client.on('message', async message => {
   let cmd = message.content.split(" ")[0];
-  if (cmd == prefix + "gstart") {
+  if (cmd.toLowerCase() == prefix + "gstart") {
     if (message.author.bot) return;
     if(!message.member.hasPermission('MANAGE_GUILD')) return  message.channel.send(':no_entry: You do not have the Permission to do this action. **MANAGE_GUILD** :no_entry:');
     let winners = message.content.split(" ")[1];
@@ -1337,7 +1529,7 @@ if (message.content.toLowerCase().startsWith(prefix + "close")) {
 
     message.channel.send('Are you sure? Once confirmed, you cannot reverse this action! To confirm, type `$close`. The command will be canceled after 20 seconds if you do not write a confirmation.')
     .then((m) => {
-      message.channel.awaitMessages(response => response.content === '$close', {
+      message.channel.awaitMessages(response => response.content.toLowerCase() === '$close', {
         max: 1,
         time: 20000,
         errors: ['time'],
@@ -1354,4 +1546,5 @@ if (message.content.toLowerCase().startsWith(prefix + "close")) {
 }
 
 });
+
 client.login(process.env.BOT_TOKEN); //token
