@@ -11,7 +11,7 @@ const DisTube = require("distube");//npm i distube
 const { replace } = require("ffmpeg-static");//npm i ffmpeg-static
 const prefix = ("$");//prefix
 client.on("ready", () =>{//Ready
-console.log('Online v1.0!');
+console.log('Online v1.1!');
         client.user.setActivity('$help | androbot.xyz')
 });
 
@@ -45,7 +45,7 @@ client.on('message', message => {
 > **\`-\` ${prefix}help giveaway**
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v1.0\`
+<:boost:801332804524179457> **Bot version: **\`v1.1\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -101,7 +101,7 @@ client.on('message', message => {//$help general | Help
 > <:question:795426662363430953> Description: Get the bot vote link.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v1.0\`
+<:boost:801332804524179457> **Bot version: **\`v1.1\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -160,7 +160,7 @@ client.on('message', message => {//$help admin | Help
 > <:question:795426662363430953> Description: Disables / Enables everyone from seeing a specific channel.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v1.0\`
+<:boost:801332804524179457> **Bot version: **\`v1.1\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -197,7 +197,7 @@ client.on('message', message => {//$help Music | Help
 > <:question:795426662363430953> Description: Shows you the current queue.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v1.0\`
+<:boost:801332804524179457> **Bot version: **\`v1.1\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -256,7 +256,7 @@ client.on('message', message => {//$help fun | Help
 > <:question:795426662363430953> Description: Roll a dice.
 
   <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-  <:boost:801332804524179457> **Bot version: **\`v1.0\`
+  <:boost:801332804524179457> **Bot version: **\`v1.1\`
   <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
   <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
   <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -287,7 +287,7 @@ client.on('message', message => {//$help ticket | Help
 > <:question:795426662363430953> Description: Closes a ticket.
 
 <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-<:boost:801332804524179457> **Bot version: **\`v1.0\`
+<:boost:801332804524179457> **Bot version: **\`v1.1\`
 <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
 <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
 <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -313,7 +313,7 @@ client.on('message', message => {//$help giveaway | Help
   > <:question:795426662363430953> Description: Starts a giveaway.
 
   <:hashtagandro:795426662216892436> **Bot prefix is \`${prefix}\`**
-  <:boost:801332804524179457> **Bot version: **\`v1.0\`
+  <:boost:801332804524179457> **Bot version: **\`v1.1\`
   <:profileandro:795426662988251186> **The developer: \`Zyad#1947\` ${prefix}dev for more information.**
   <:internet:801183982418919454> **[Our Website](https://androbot.xyz)**
   <:maintenance:795426662350192643> **[Our Support server](https://discord.gg/9rQCg5mUby)**
@@ -704,13 +704,14 @@ if(message.content.toLowerCase() === prefix  + "dev") {
 
  let Embed = new Discord.MessageEmbed()
  .setColor("#d1afd2")
- .setThumbnail("https://cdn.discordapp.com/avatars/361855205664489475/859383b17affc25e594bbdef722b0db1.png?size=1024")
+ .setThumbnail("https://cdn.discordapp.com/avatars/361855205664489475/4a6a156e6a82faa8762256d486f28957.png?size=1024")
  .setTitle('**AndroBot Developer:**')
- .addField('<:crown:801332804674912266>** Name:**',`Zyad`,false)
- .addField('<:ruleandro:795426662984581160>** Age:**',`14`,false)
- .addField('<:internet:801183982418919454>** Country:**',`Saudi Arabia`,false)
- .addField('<:twitter:795426662409175070>** Social:**',`[Twitter](https://twitter.com/AZy4d)`,false)
- .setTimestamp()
+ .addField('<:crown:801332804674912266>** Name:**',`Zyad`,true)
+ .addField('<:ruleandro:795426662984581160>** Age:**',`14`,true)
+  .addField('<:internet:801183982418919454>** Country:**',`Saudi Arabia`,false)
+  .addField('<:cake:841093345445937154>** Birthday:**',`NOV, 11`,true)
+ .addField('<:twitter:795426662409175070>** Social:**',`[Twitter](https://twitter.com/AZy4d)`,true)
+ .setTimestamp()//
  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
 }
@@ -755,13 +756,13 @@ return message.channel.send(dis2)
        .setAuthor(user.username,user.displayAvatarURL())
      .setThumbnail(user.displayAvatarURL())
      .setTitle(`**User Data:**`)
-     .addField('<:hashtagandro:795426662216892436>** Username:**',`${user.tag}`,false)
-     .addField('<:general:801172797760995358>** ID:**',`${user.id}`,false)
+     .addField('<:general:801172797760995358>** Username:**',`${user.tag}`,false)
+     .addField('<:hashtagandro:795426662216892436>** ID:**',`${user.id}`,false)
      .addField('<:ruleandro:795426662984581160>** Created At:**',`${user.createdAt.toLocaleString()}`,false)
-     .setTimestamp()
+     .setTimestamp()//
      .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
      message.channel.send(Embed);
-    }
+   }
     });
 
 
@@ -772,7 +773,7 @@ if(message.content.toLowerCase() === (prefix + "bot")) {
  let Embed = new Discord.MessageEmbed()
  .setColor("#d1afd2")
  .setThumbnail("https://cdn.discordapp.com/attachments/573642065024385036/818084048843833344/circlelogo1.png")
-  .setTitle(`**AndroBot version: v1.0**`)
+  .setTitle(`**AndroBot version: v1.1**`)
  .setDescription("Hi! I'm Androbot a multi-purpose bot ready to skill up and boost up your Discord server also features auto-moderation, administration, and much more")
  .addField('<:hashtagandro:795426662216892436>** latency:**',`${Math.round(client.ws.ping)}ms`,true)
  .addField('<:sparklesandro:795426662757695528>** Guilds:**',`${client.guilds.cache.size}`,true)
@@ -803,6 +804,7 @@ if(message.content.toLowerCase() === (prefix  + "server")) {
  .addField('<:sparklesandro:795426662757695528>:** Voice channels:**',`${message.guild.channels.cache.filter(m => m.type === 'voice').size}`,true)
  .addField('<:crown:801332804674912266>** Server owner:**',`${message.guild.owner}`,true)
  .addField('<:ruleandro:795426662984581160>** Created On:**',`${message.guild.createdAt.toLocaleString()}`,true)
+ .addField('<:boost:801332804524179457>** Server Boosts:**',`${message.guild.premiumSubscriptionCount}`,true)
  .setTimestamp()
  .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL())
  message.channel.send(Embed);
